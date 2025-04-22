@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { biomes } from '@/data/biomesData';
-import { TreeDeciduous, CloudFog, Mountain, Sand, MountainSnow, Archive } from 'lucide-react';
+import { TreeDeciduous, CloudFog, Mountain, Hourglass, MountainSnow, Archive } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const getBiomeIcon = (id: string) => {
@@ -13,7 +13,7 @@ const getBiomeIcon = (id: string) => {
     case 'kair-north':
       return <Mountain className="w-6 h-6" />;
     case 'ashen-wastes':
-      return <Sand className="w-6 h-6" />;
+      return <Hourglass className="w-6 h-6" />;
     case 'floating-islands':
       return <MountainSnow className="w-6 h-6" />;
     case 'underground-archive':
