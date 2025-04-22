@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { GameClass } from '../data/gameData';
 import ClassCard from './ClassCard';
 import ClassDetails from './ClassDetails';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 interface ClassSelectionProps {
   classes: GameClass[];
@@ -10,6 +12,11 @@ interface ClassSelectionProps {
 
 const ClassSelection: React.FC<ClassSelectionProps> = ({ classes }) => {
   const [selectedClass, setSelectedClass] = useState<GameClass>(classes[0]);
+  const navigate = useNavigate();
+
+  const handleStartJourney = () => {
+    navigate('/world');
+  };
 
   return (
     <div className="container mx-auto px-4 py-6">
@@ -31,11 +38,12 @@ const ClassSelection: React.FC<ClassSelectionProps> = ({ classes }) => {
       <ClassDetails gameClass={selectedClass} />
       
       <div className="mt-10 flex justify-center">
-        <button 
+        <Button 
+          onClick={handleStartJourney}
           className="px-8 py-3 text-lg font-shadow rounded-md bg-shadow-purple text-white hover:bg-shadow-deep-purple transition-all duration-300 rune-border"
         >
           Start Your Journey
-        </button>
+        </Button>
       </div>
     </div>
   );
