@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { biomes } from '@/data/biomesData';
 import { TreeDeciduous, CloudFog, Mountain, Hourglass, MountainSnow, Archive } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const getBiomeIcon = (id: string) => {
   switch (id) {
@@ -25,6 +26,15 @@ const getBiomeIcon = (id: string) => {
 
 const WorldMap = () => {
   const [selectedBiome, setSelectedBiome] = useState(biomes[0]);
+  const navigate = useNavigate();
+
+  const handleBiomeClick = (biomeId: string) => {
+    setSelectedBiome(biomes.find(biome => biome.id === biomeId) || biomes[0]);
+  };
+
+  const handleExploreLocation = () => {
+    navigate(`/biome/${selectedBiome.id}`);
+  };
 
   return (
     <div className="min-h-screen relative">
@@ -39,7 +49,7 @@ const WorldMap = () => {
             {biomes.map((biome) => (
               <motion.button
                 key={biome.id}
-                onClick={() => setSelectedBiome(biome)}
+                onClick={() => handleBiomeClick(biome.id)}
                 className={`p-4 rounded-lg glass-panel transition-all hover:scale-105 ${
                   selectedBiome.id === biome.id ? 'ring-2 ring-shadow-purple' : ''
                 }`}
@@ -94,6 +104,15 @@ const WorldMap = () => {
                     <li key={resource}>{resource}</li>
                   ))}
                 </ul>
+              </div>
+              
+              <div className="pt-4">
+                <button
+                  onClick={handleExploreLocation}
+                  className="w-full py-3 text-lg font-shadow rounded-md bg-shadow-purple text-white hover:bg-shadow-deep-purple transition-all duration-300"
+                >
+                  Исследовать локацию
+                </button>
               </div>
             </div>
           </motion.div>
