@@ -1,11 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import GameHeader from '@/components/GameHeader';
+import ClassSelection from '@/components/ClassSelection';
+import GameBackground from '@/components/GameBackground';
+import { gameClasses } from '@/data/gameData';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen relative text-white overflow-hidden">
+      {/* Background */}
+      <GameBackground />
+      
+      {/* Content */}
+      <div className="relative z-10 min-h-screen flex flex-col">
+        <GameHeader />
+        
+        <main className="flex-1 py-4 md:py-8">
+          <ClassSelection classes={gameClasses} />
+        </main>
+        
+        <footer className="py-4 text-center text-xs text-gray-500">
+          <p>Shadow Realms: Печать Равновесия &copy; 2025</p>
+        </footer>
       </div>
     </div>
   );
